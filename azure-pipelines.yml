@@ -76,3 +76,4 @@ stages:
         inputs:
           provider: 'azurerm'
           command: 'apply'
+          environmentServiceNameAzureRM: 'dev-test'
