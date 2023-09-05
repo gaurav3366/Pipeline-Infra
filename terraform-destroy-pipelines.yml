@@ -1,0 +1,79 @@
+# Starter pipeline
+
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger: none
+
+pool:
+  vmImage: ubuntu-latest
+
+parameters:
+  # resource group name: 
+  - name: rgname
+    type: string
+    default: 'test-pipeline'
+  # storage account name:
+  - name: stgaccount
+    type: string
+    default: 'terraformsg1'
+  # container name:
+  - name: container
+    type: string
+    default: terraform-state
+  # tf state file name:
+  - name: key
+    type: string
+    default: terraform.tfstate
+stages:
+  - stage: Plan
+    displayName: Plan
+    jobs:
+    - job: 
+      displayName:
+      steps:
+      - task: TerraformTaskV4@4
+        displayName: terraform init
+        inputs:
+          provider: azurerm
+          command: 'init'
+          backendServiceArm: 'dev-test'
+          backendAzureRmResourceGroupName: ${{ parameters.rgname}}
+          backendAzureRmStorageAccountName: ${{ parameters.stgaccount}}
+          backendAzureRmContainerName: ${{ parameters.container}}
+          backendAzureRmKey: ${{ parameters.key}}
+      - task: TerraformTaskV4@4
+        displayName: terraform validate
+        inputs:
+          provider: 'azurerm'
+          command: 'validate'
+   
+      - task: TerraformTaskV4@4
+        displayName: terraform plan
+        inputs:
+          provider: 'azurerm'
+          command: 'plan'
+          environmentServiceNameAzureRM: 'dev-test'  
+  - stage: Destroy
+    displayName:Destroy
+    jobs:
+    - job: 
+      displayName:
+      steps:
+      - task: TerraformTaskV4@4
+        displayName: terraform init
+        inputs:
+          provider: azurerm
+          command: 'init'
+          backendServiceArm: 'dev-test'
+          backendAzureRmResourceGroupName: ${{ parameters.rgname}}
+          backendAzureRmStorageAccountName: ${{ parameters.stgaccount}}
+          backendAzureRmContainerName: ${{ parameters.container}}
+          backendAzureRmKey: ${{ parameters.key}}
+      - task: TerraformTaskV4@4
+        displayName: terraform destroy
+        inputs:
+          provider: 'azurerm'
+          command: 'destroy'
+          environmentServiceNameAzureRM: 'dev-test'
