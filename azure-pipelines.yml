@@ -52,7 +52,6 @@ stages:
         inputs:
           provider: 'azurerm'
           command: 'plan'
-          commandOptions: '-input= false'
           environmentServiceNameAzureRM: 'dev-test' 
   - stage: Apply
     displayName: Apply
