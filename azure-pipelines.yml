@@ -1,5 +1,4 @@
 # Starter pipeline
-
 # Start with a minimal pipeline that you can customize to build and deploy your code.
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
@@ -48,14 +47,13 @@ stages:
         inputs:
           provider: 'azurerm'
           command: 'validate'
-   
       - task: TerraformTaskV4@4
         displayName: terraform plan
         inputs:
           provider: 'azurerm'
           command: 'plan'
-          commandOptions: '-input= false -auto-approve -var-file="config.tfvars"'
-          environmentServiceNameAzureRM: 'dev-test'  
+          commandOptions: '-input= false'
+          environmentServiceNameAzureRM: 'dev-test' 
   - stage: Apply
     displayName: Apply
     jobs:
