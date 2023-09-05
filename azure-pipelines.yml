@@ -54,7 +54,7 @@ stages:
         inputs:
           provider: 'azurerm'
           command: 'plan'
-          commandOptions: '-input= false'
+          commandOptions: '-input= false -auto-approve -var-file="config.tfvars"'
           environmentServiceNameAzureRM: 'dev-test'  
   - stage: Apply
     displayName: Apply
