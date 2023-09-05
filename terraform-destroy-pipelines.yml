@@ -49,22 +49,6 @@ stages:
           provider: 'azurerm'
           command: 'plan'
           environmentServiceNameAzureRM: 'dev-test'  
-  - stage: Destroy
-    displayName: Destroy
-    jobs:
-    -job: 
-      displayName:
-      steps:
-      - task: TerraformTaskV4@4
-        displayName: terraform init
-        inputs:
-          provider: azurerm
-          command: 'init'
-          backendServiceArm: 'dev-test'
-          backendAzureRmResourceGroupName: ${{ parameters.rgname}}
-          backendAzureRmStorageAccountName: ${{ parameters.stgaccount}}
-          backendAzureRmContainerName: ${{ parameters.container}}
-          backendAzureRmKey: ${{ parameters.key}}
       - task: TerraformTaskV4@4
         displayName: terraform destroy
         inputs:
