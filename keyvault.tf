@@ -3,7 +3,7 @@ resource "azurerm_key_vault" "kv" {
   location                    = "uk south"
   resource_group_name         = "demo-rg1"
   enabled_for_disk_encryption = true
-  tenant_id                   = "5d12026b-63d9-4a51-9ca6-3439c905e28e"
+  tenant_id                   = "a8f16248-ee13-4012-992e-7f59ac04718a"
   soft_delete_retention_days  = 7
   purge_protection_enabled    = false
 
