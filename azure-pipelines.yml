@@ -52,10 +52,10 @@ stages:
       - task: TerraformTaskV4@4
         displayName: terraform plan
         inputs:
-         -input= false 
-        provider: 'azurerm'
-        command: 'plan'
-        environmentServiceNameAzureRM: 'dev-test'  
+          provider: 'azurerm'
+          command: 'plan'
+          commandOptions: '-input= false'
+          environmentServiceNameAzureRM: 'dev-test'  
   - stage: Apply
     displayName: Apply
     jobs:
