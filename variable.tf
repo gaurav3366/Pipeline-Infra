@@ -3,6 +3,6 @@ variable "name" {
   default = "demo-rg1"
 }
 variable "location" {
-  type = string
+  type    = string
   default = "uk south"
 }

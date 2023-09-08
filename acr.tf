@@ -5,6 +5,7 @@ resource "azurerm_container_registry" "acr" {
   sku                 = "Standard"
   admin_enabled       = true
 }
+
 resource "azurerm_container_registry_scope_map" "scope_map" {
   name                    = "scope-map"
   container_registry_name = azurerm_container_registry.acr.name
