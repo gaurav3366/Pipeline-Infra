@@ -13,13 +13,13 @@ resource "azurerm_traffic_manager_azure_endpoint" "vmss_endpoint" {
 
 
 # Update the Traffic Manager endpoint
-resource "azurerm_traffic_manager_azure_endpoint" "endpoint" {
+/* resource "azurerm_traffic_manager_azure_endpoint" "endpoint" {
   //for_each            = azurerm_linux_virtual_machine_scale_set.vmsss
   name               = "test-endpoint"
   profile_id         = azurerm_traffic_manager_profile.tr-manager.id
   target_resource_id = azurerm_public_ip.public-ip.id
   weight             = 2
-}
+} */
 /* resource "azurerm_traffic_manager_azure_endpoint" "example" {
   name               = "example-endpoint"
   profile_id         = azurerm_traffic_manager_profile.example.id
