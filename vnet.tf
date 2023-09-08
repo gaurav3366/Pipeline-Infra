@@ -20,6 +20,6 @@ resource "azurerm_network_interface" "example" {
     name                          = azurerm_public_ip.public-ip.name
     subnet_id                     = azurerm_subnet.aks_subnet.id
     private_ip_address_allocation = "Dynamic"
-    public_ip_address_id          = azurerm_public_ip.public-ip.id
+    //public_ip_address_id          = azurerm_public_ip.public-ip.id
   }
 }
