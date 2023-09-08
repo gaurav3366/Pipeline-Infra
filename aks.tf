@@ -1,7 +1,7 @@
 resource "azurerm_kubernetes_cluster" "aks" {
   name                = "aks"
-  location            = "uk south"
-  resource_group_name = "demo-rg1"
+  resource_group_name = azurerm_resource_group.rg2.name
+  location            = azurerm_resource_group.rg2.location
   dns_prefix          = "demo-aks"
 
   default_node_pool {

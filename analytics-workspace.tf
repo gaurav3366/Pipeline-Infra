@@ -27,7 +27,7 @@ resource "azurerm_monitor_diagnostic_setting" "aks_diagnostic" {
   }
   # Configure additional logs and metrics as needed
 }
-resource "azurerm_monitor_diagnostic_setting" "mssqlserver_diagnostic" {
+/* resource "azurerm_monitor_diagnostic_setting" "mssqlserver_diagnostic" {
   name                       = "mssql-server-diagnostic"
   target_resource_id         = azurerm_mssql_server.primary.id
   log_analytics_workspace_id = azurerm_log_analytics_workspace.workspace.id
@@ -48,16 +48,16 @@ resource "azurerm_monitor_diagnostic_setting" "mssqlserver_diagnostic" {
     }
   }
   # Configure additional logs and metrics as needed
-}
+} */
 
 
-resource "azurerm_monitor_diagnostic_setting" "database_diagnostic" {
+/* resource "azurerm_monitor_diagnostic_setting" "database_diagnostic" {
   name = "msdb-database-diagnostic"
   //database_name              = azurerm_mssql_database.primary.name
   target_resource_id         = azurerm_mssql_database.primary.id
   log_analytics_workspace_id = azurerm_log_analytics_workspace.workspace.id
 
-  enabled_log {
+    log {
     category = "SQLSecurityAuditEvents"
   }
   metric {
@@ -75,8 +75,8 @@ resource "azurerm_monitor_diagnostic_setting" "vmsss" {
   target_resource_id = azurerm_linux_virtual_machine_scale_set.vmsss.id
   log_analytics_workspace_id = azurerm_log_analytics_workspace.workspace.id
 
-  enabled_log{
-    category = "ActivityLogs"
+    enabled_log{
+    category = "AuditEvent"
 
   }
 
@@ -88,4 +88,4 @@ resource "azurerm_monitor_diagnostic_setting" "vmsss" {
       enabled = false
     }
   }
-}
+} */
