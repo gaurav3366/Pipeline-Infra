@@ -4,8 +4,8 @@ data "azurerm_client_config" "current" {}
 } */
 resource "azurerm_key_vault" "kv" {
   name                        = "terraKVinfra1"
-  resource_group_name = azurerm_resource_group.rg2.name
-  location            = azurerm_resource_group.rg2.location
+  location                    = azurerm_resource_group.rg2.location
+  resource_group_name         = azurerm_resource_group.rg2.name
   enabled_for_disk_encryption = true
   tenant_id                   = "a8f16248-ee13-4012-992e-7f59ac04718a"
   soft_delete_retention_days  = 7

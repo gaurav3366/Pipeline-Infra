@@ -1,14 +1,14 @@
 
 resource "azurerm_network_interface" "nic" {
   name                = "vmss-nic"
-  resource_group_name = azurerm_resource_group.rg2.name
   location            = azurerm_resource_group.rg2.location
+  resource_group_name = azurerm_resource_group.rg2.name
 
   ip_configuration {
     name                          = "internal"
     subnet_id                     = azurerm_subnet.aks_subnet.id
     private_ip_address_allocation = "Dynamic"
-    public_ip_address_id          = azurerm_public_ip.public-ip.id
+    // public_ip_address_id          = azurerm_public_ip.public-ip.id
   }
 }
 resource "azurerm_linux_virtual_machine_scale_set" "vmsss" {
@@ -41,9 +41,13 @@ resource "azurerm_linux_virtual_machine_scale_set" "vmsss" {
     primary = true
 
     ip_configuration {
-      name      = "internal"
-      primary   = true
-      subnet_id = azurerm_subnet.aks_subnet.id
+      name                                   = "internal"
+      primary                                = true
+      subnet_id                              = azurerm_subnet.aks_subnet.id
+      load_balancer_backend_address_pool_ids = ["${azurerm_lb_backend_address_pool.bckndpool.id}"]
+      //private_ip_address_allocation = "Dynamic"
+      //public_ip_address_id          = azurerm_public_ip.public_ip.id
+
     }
   }
 }

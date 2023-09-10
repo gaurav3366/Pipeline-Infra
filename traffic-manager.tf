@@ -1,12 +1,4 @@
 # Create Azure Traffic Manager Profile
-resource "azurerm_public_ip" "public-ip" {
-  name                = "test-public-ip2"
-  location            = azurerm_resource_group.rg2.location
-  resource_group_name = azurerm_resource_group.rg2.name
-  allocation_method   = "Static"
-  domain_name_label   = "test-public-ip"
-
-}
 
 /* resource "azurerm_public_ip" "public-ip1" {
   name                = "test-public-ip1"

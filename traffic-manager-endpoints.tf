@@ -20,9 +20,16 @@ resource "azurerm_traffic_manager_azure_endpoint" "vmss_endpoint" {
   target_resource_id = azurerm_public_ip.public-ip.id
   weight             = 2
 } */
-/* resource "azurerm_traffic_manager_azure_endpoint" "example" {
-  name               = "example-endpoint"
-  profile_id         = azurerm_traffic_manager_profile.example.id
-  weight             = 100
-  target_resource_id = azurerm_public_ip.public-ip.id
+/* resource "azurerm_traffic_manager_azure_endpoint" "aks_endpoint" {
+  name               = "aks-endpoint"
+  profile_id         = azurerm_traffic_manager_profile.tr-manager.id
+  target_resource_id = azurerm_kubernetes_cluster.aks.id
+  weight             = 50
 } */
+
+resource "azurerm_traffic_manager_azure_endpoint" "vmss_endpoint" {
+  name               = "vmss-endpoint"
+  profile_id         = azurerm_traffic_manager_profile.tr-manager.id
+  target_resource_id = azurerm_public_ip.public-ip.id
+  weight             = 50
+}
